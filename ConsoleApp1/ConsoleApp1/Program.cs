@@ -7,7 +7,7 @@ using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Assignment_4
+namespace c0732132_Assihnment_4
 {
     class Program
     {
@@ -20,6 +20,7 @@ namespace Assignment_4
             p.ReadTextFile();
             p.Wordfind();
             p.Wordfind2();
+            p.NumLetters();
             Console.ReadKey();
 
 
@@ -41,12 +42,12 @@ namespace Assignment_4
                 {
 
                     Beowulf.Add(ln);
-
+                    Console.WriteLine(ln);
                 }
 
                 file.Close();
                 counter = File.ReadLines("U:/Users/696464/ravinder/Beowulf.txt").Count();
-                Console.WriteLine($"File has {counter} lines.");
+                Console.WriteLine($"\n\n\n\n\n\nFile has {counter} lines.");
 
             }
         }
@@ -115,6 +116,18 @@ namespace Assignment_4
             Console.WriteLine("Total number of Lines which contain fare but not war: " + z);
         }
 
+        public void NumLetters()
+        {
+
+            StreamReader reader = new StreamReader("U:/Users/696464/ravinder/Beowulf.txt");
+            string script = reader.ReadToEnd();
+            int num = 0;
+            foreach (char letter in script)
+            { num++; }
+            Console.WriteLine("Total number of letters per word: " + num);
+
+        }
+
 
         public int FindNumberOfBlankSpaces(string line)
         {
@@ -145,9 +158,10 @@ namespace Assignment_4
 
 
 
+
+
+
+
     }
 
 }
-
-
-
