@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Assignment_4
 {
@@ -15,18 +16,48 @@ namespace Assignment_4
         {
             Program p = new Program();
             p.Beowulf = new ArrayList();
-            p.ReadTextFiles();
+            // p.ReadTextFiles();
+            p.Run();
             Console.ReadKey();
 
         }
         public void Run()
         {
-            this.ReadTextFiles();
+            this.ReadTextFile();
+            Console.WriteLine("xxxxx    number of words is {0} ", WalkOverArrayList());
+            
+        }
+
+        public int WalkOverArrayList()
+        {
+            int totalNumberOfWords = 0;
+            foreach (var thing in Beowulf)
+            {
+                totalNumberOfWords += CountWordsPerLine(thing.ToString());
+            }
+
+            return totalNumberOfWords;
+        }
+
+        public int CountWordsPerLine(string str)
+        {
+            int a = 0;
+            int numberOfWords = 0;
+            while (a <= str.Length - 1)
+            {
+                if (str[a] == ' ' || str[a] == '\n' || str[a] == '\t')
+                {
+                    numberOfWords++;
+                }
+                a++;
+            }
+
+            return numberOfWords;
         }
 
         public void ReadTextFiles()
         {
-            // Read file using StramReader. Read file line by line
+           
             using (StreamReader file = new StreamReader("U:/Users/696464/ravinder/Beowulf.txt"))
             {
 
@@ -47,6 +78,32 @@ namespace Assignment_4
             }
         }
 
+        public void ReadTextFile()
+        {
+
+            StreamReader reader = new StreamReader("U:/Users/696464/ravinder/Beowulf.txt");
+            string script = reader.ReadToEnd();
+
+            var text = script.Trim();
+            int Count = 0, index = 0;
+
+            while (index < text.Length)
+            {
+
+                while (index < text.Length && !char.IsWhiteSpace(text[index]))
+                    index++;
+
+                Count++;
+
+                while (index < text.Length && char.IsWhiteSpace(text[index]))
+                    index++;
+            }
+
+            Console.WriteLine("Total Number of Words are " + Count);
+
+        }
+
+
         public int FindNumberOfBlankSpaces(string line)
         {
 
@@ -55,9 +112,11 @@ namespace Assignment_4
 
             foreach (char c in line)
             {
-                if (char.IsLetter(c)) { countletters++; }
+                if (char.IsLetter(c))
+                { countletters++; }
 
-                if (char.IsWhiteSpace(c)) { countletters++; }
+                if (char.IsWhiteSpace(c))
+                { countletters++; }
             }
             return countSpaces;
 
