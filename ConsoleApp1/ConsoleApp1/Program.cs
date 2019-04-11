@@ -16,69 +16,17 @@ namespace Assignment_4
         {
             Program p = new Program();
             p.Beowulf = new ArrayList();
-            // p.ReadTextFiles();
-            p.Run();
+            p.ReadTextFiles();
+            p.Wordfind();
             Console.ReadKey();
 
         }
         public void Run()
         {
-            this.ReadTextFile();
-            Console.WriteLine("xxxxx    number of words is {0} ", WalkOverArrayList());
-            
-        }
-
-        public int WalkOverArrayList()
-        {
-            int totalNumberOfWords = 0;
-            foreach (var thing in Beowulf)
-            {
-                totalNumberOfWords += CountWordsPerLine(thing.ToString());
-            }
-
-            return totalNumberOfWords;
-        }
-
-        public int CountWordsPerLine(string str)
-        {
-            int a = 0;
-            int numberOfWords = 0;
-            while (a <= str.Length - 1)
-            {
-                if (str[a] == ' ' || str[a] == '\n' || str[a] == '\t')
-                {
-                    numberOfWords++;
-                }
-                a++;
-            }
-
-            return numberOfWords;
+            this.ReadTextFiles();
         }
 
         public void ReadTextFiles()
-        {
-           
-            using (StreamReader file = new StreamReader("U:/Users/696464/ravinder/Beowulf.txt"))
-            {
-
-                int counter = 0;
-                string ln;
-
-                while ((ln = file.ReadLine()) != null)
-                {
-
-                    Beowulf.Add(ln);
-
-                }
-
-                file.Close();
-                counter = File.ReadLines("U:/Users/696464/ravinder/Beowulf.txt").Count();
-                Console.WriteLine($"File has {counter} lines.");
-
-            }
-        }
-
-        public void ReadTextFile()
         {
 
             StreamReader reader = new StreamReader("U:/Users/696464/ravinder/Beowulf.txt");
@@ -102,10 +50,26 @@ namespace Assignment_4
             Console.WriteLine("Total Number of Words are " + Count);
 
         }
+        public void Wordfind()
+
+        {
+            int chr = 0;
+            foreach (var line in File.ReadAllLines("U:/Users/696464/ravinder/Beowulf.txt"))
+            {
+                if (line.Contains("sea") && line.Contains("fare"))
+                {
+                    chr++;
+                }
+
+            }
+            Console.WriteLine("Total words sea and fare in File are:" + chr);
 
 
+        }
         public int FindNumberOfBlankSpaces(string line)
         {
+
+
 
             int countletters = 0;
             int countSpaces = 0;
@@ -113,15 +77,25 @@ namespace Assignment_4
             foreach (char c in line)
             {
                 if (char.IsLetter(c))
-                { countletters++; }
+                {
+                    countletters++;
+                }
 
                 if (char.IsWhiteSpace(c))
-                { countletters++; }
+                {
+                    countletters++;
+                }
             }
             return countSpaces;
 
         }
 
+
+
+
+
+
     }
 
 }
+
