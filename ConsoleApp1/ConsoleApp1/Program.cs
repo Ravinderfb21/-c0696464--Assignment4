@@ -22,8 +22,9 @@ namespace Assignment_4
 
         public void ReadTextFiles()
         {
-            //Read file using streamReader.
-            using (StreamReader file = new StreamReader("c:/arear/.txt"))
+       
+            using (StreamReader file = new StreamReader("c:/area51/beowulf.txt"))
+                using(StreamReader file = new StreamReader("u:/users/696464/Assignment_4/beowulf.txt"))
             {
                 int counter = 0;
                 string ln;
